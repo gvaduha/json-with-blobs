@@ -2,7 +2,7 @@
   
 [![License](http://img.shields.io/badge/license-mit-blue.svg?style=flat-square)](https://raw.githubusercontent.com/json-iterator/go/master/LICENSE)
 [![Build Status](https://travis-ci.org/gvaduha/json-with-blobs.svg?branch=master)](https://travis-ci.org/gvaduha/json-with-blobs)
-
+[![NuGet version](https://img.shields.io/nuget/v/json-with-blobs.svg?style=flat-square)](https://www.nuget.org/packages/json-with-blobs/1.0.0)
 ## Brief
 When you have an object with byte[] fields that can be large to base64 it and ugly to mix in Json you think about to store them separately. This helps to make it possible.
 
