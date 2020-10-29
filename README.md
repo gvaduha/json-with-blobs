@@ -8,24 +8,35 @@ When you have an object with byte[] fields that can be large to base64 it and ug
 
 ## Examples
 ```
-    class TwoBlobsObj
-    {
-        public string Name { get; set; }
-        [BlobField(FileNumber = 0)]
-        public byte[] File0 { get; set; }
-        [BlobField(FileNumber = 1)]
-        public byte[] File1 { get; set; }
-    }
+  class TwoBlobsObj
+  {
+      public string Name { get; set; }
+      [BlobField(FileNumber = 0)]
+      public byte[] File0 { get; set; }
+      [BlobField(FileNumber = 1)]
+      public byte[] File1 { get; set; }
+  }
 
-    class ThreeBlobsObj : TwoBlobsObj
-    {
-        [BlobField(FileNumber = 2)]
-        public byte[] File2 { get; set; }
-    }
+  class ThreeBlobsObj : TwoBlobsObj
+  {
+      [BlobField(FileNumber = 2)]
+      public byte[] File2 { get; set; }
+  }
 ```
+Deserialize
 ```
-    var obj = JsonBlobConvert
-        .DeserializeObject<TwoBlobsObj>(TestSamples.JsonSample1, TestSamples.TwoFileFS);
+  var obj = JsonBlobConvert
+      .DeserializeObject<TwoBlobsObj>(TestSamples.JsonSample1, TestSamples.TwoFileFS);
+```
+Serialize
+```
+  var obj = new ThreeBlobsObj
+  {
+    Name = "Write Sample",
+    File0 = TestSamples.FileLen6Sig11,
+    File1 = TestSamples.FileLen8Sig88,
+    File2 = TestSamples.FileLen3Sig22
+  };
 
-    var (json, blobfs) = JsonBlobConvert.SerializeObject<TwoBlobsObj>(obj);
+  var (json, blobfs) = JsonBlobConvert.SerializeObject(obj);
 ```
