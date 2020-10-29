@@ -30,8 +30,7 @@ namespace json_with_blobs_test
                 File2 = TestSamples.FileLen3Sig22
             };
 
-            var (json, blobfs) = JsonBlobConvert
-                .SerializeObject<TwoBlobsObj>(obj);
+            var (json, blobfs) = JsonBlobConvert.SerializeObject(obj);
 
             Assert.Contains("Write Sample", json);
             Assert.True(blobfs.SequenceEqual(TestSamples.ThreeFileFS));
