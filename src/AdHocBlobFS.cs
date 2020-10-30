@@ -166,12 +166,12 @@ namespace gvaduha.JsonWithBlobs
             byte totalFileCnt = (byte)(_newFileCnt + _rofsFileCnt);
             var fileSizes = Enumerable.Range(0, totalFileCnt).Select(x => (num:x, size:FileSize(x)));
             Int32 totalFilesSize = fileSizes.Select(x => x.size).Sum();
-            var fs = new byte[4l + 12 * totalFileCnt + totalFilesSize];
+            var fs = new byte[4 + 12 * totalFileCnt + totalFilesSize];
 
             fixed(byte* pfs = fs)
             {
                 UInt32 header = (Signature & 0xFFFFFF00) | totalFileCnt;
-                UInt32 hdr = BitConverter.ToUInt32(BitConverter.GetBytes(header).Reverse().ToArray());
+                UInt32 hdr = BitConverter.ToUInt32(BitConverter.GetBytes(header).Reverse().ToArray(), 0);
                 Buffer.MemoryCopy(&hdr, pfs, 4, 4);
                 byte* curDescrOffs = pfs + 4;
                 byte* fileArea = pfs + 4 + totalFileCnt * 12;
