@@ -14,7 +14,7 @@ namespace gvaduha.JsonWithBlobs
     /// 24b   |8b      |64b  |32b    dscr#n:96b  |file#1     file#n
     /// [sign][# files][offs][size]..[    ][    ][ .... ] .. [ .... ]
     /// </summary>
-    internal class AdHocBlobFS
+    public class AdHocBlobFS
     {
         const UInt32 Signature = 0x56410100;
         const UInt32 ReversedSignature = 0x00014156;
@@ -179,10 +179,7 @@ namespace gvaduha.JsonWithBlobs
 
                 foreach (var (num, size) in fileSizes)
                 {
-                    //UInt64 fo = BitConverter.ToUInt64(BitConverter.GetBytes(curFileOffs).Reverse().ToArray());
-                    //Buffer.MemoryCopy(&fo, curDescrOffs, 8, 8);
                     Buffer.MemoryCopy(&curFileOffs, curDescrOffs, 8, 8);
-                    //Int32 sz = BitConverter.ToInt32(BitConverter.GetBytes((Int32)size).Reverse().ToArray());
                     Int32 sz = size;
                     Buffer.MemoryCopy(&sz, curDescrOffs+8, 4, 4);
                     fixed (byte* srcfile = ReadFile(num))
