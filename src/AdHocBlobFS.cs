@@ -19,7 +19,7 @@ namespace gvaduha.JsonWithBlobs
         const UInt32 Signature = 0x56410100;
         const UInt32 ReversedSignature = 0x00014156;
 
-        public static byte[] EmptyFS = BitConverter.GetBytes(Signature);
+        public static byte[] EmptyFS = BitConverter.GetBytes(ReversedSignature);
         public const Int32 NewFile = -1; 
 
         private byte[] _rofs;
