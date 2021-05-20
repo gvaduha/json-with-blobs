@@ -41,3 +41,18 @@ Serialize
 
   var (json, blobfs) = JsonBlobConvert.SerializeObject(obj);
 ```
+
+## blobfs-tool
+Basic tool for reading writing blobfs files
+```
+Options:
+  -b | --bfs      blob fs file
+  -n | --new      create new blob fs file
+  -l | --list     list files
+  -x | --extract  extract all files to disk
+  -w | --write    write one or multiple files
+
+Example:
+	-b blobfs.blob -x
+	-b newbfs.blob -n -w test1 -w test2
+```
